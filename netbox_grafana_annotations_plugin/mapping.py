@@ -12,7 +12,6 @@ Resolution order (spec/02-technical-design.md, resolved 2026-07-12):
 """
 import logging
 from dataclasses import dataclass
-from typing import Optional
 
 from django.core.cache import cache
 
@@ -25,10 +24,10 @@ logger = logging.getLogger("netbox_grafana_annotations_plugin")
 @dataclass
 class MappingResult:
     dashboard_uid: str
-    panel_id: Optional[int]
+    panel_id: int | None
 
 
-def _custom_field_override(settings: PluginSettings, data: dict) -> Optional[MappingResult]:
+def _custom_field_override(settings: PluginSettings, data: dict) -> MappingResult | None:
     custom_fields = data.get("custom_fields") or {}
     dashboard_uid = custom_fields.get(settings.dashboard_uid_field)
     if not dashboard_uid:
@@ -40,7 +39,7 @@ def _cache_key(tag: str) -> str:
     return f"netbox_grafana_annotations_plugin:tag_search:{tag}"
 
 
-def _tag_search(settings: PluginSettings, object_type: str, object_name: str) -> Optional[MappingResult]:
+def _tag_search(settings: PluginSettings, object_type: str, object_name: str) -> MappingResult | None:
     tag = settings.tag_template.format(object_type=object_type, object_name=object_name)
     cache_key = _cache_key(tag)
 
@@ -62,7 +61,7 @@ def _tag_search(settings: PluginSettings, object_type: str, object_name: str) ->
     return result
 
 
-def resolve_target(settings: PluginSettings, object_type: str, object_name: str, data: dict) -> Optional[MappingResult]:
+def resolve_target(settings: PluginSettings, object_type: str, object_name: str, data: dict) -> MappingResult | None:
     override = _custom_field_override(settings, data)
     if override is not None:
         return override

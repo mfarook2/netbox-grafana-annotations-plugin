@@ -8,7 +8,7 @@ raw FK ids, only `data` has resolved display names, and only for the
 *current* (post-change) value.
 """
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from django.contrib.contenttypes.models import ContentType
 
@@ -45,7 +45,7 @@ def parse_timestamp(raw) -> datetime:
             return datetime.fromisoformat(raw)
         except (TypeError, ValueError):
             pass
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
 
 def _resolve_related_display(object_type: str, field_name: str, pk) -> str | None:

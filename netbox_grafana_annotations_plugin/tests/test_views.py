@@ -4,7 +4,7 @@ Test cases for NetBox Grafana Annotations Plugin's AnnotationLog views.
 AnnotationLog has no Add/Edit views -- entries are only ever created by the
 webhook receiver (see tests/test_webhook.py for that endpoint's tests).
 """
-from django.urls import reverse
+from django.urls import NoReverseMatch, reverse
 from django.utils import timezone
 
 from ..models import AnnotationLog
@@ -83,5 +83,5 @@ class AnnotationLogViewTestCase(PluginViewTestCase):
     def test_no_add_or_edit_urls_registered(self):
         """AnnotationLog entries are system-generated only -- confirm there's no add/edit route."""
         for url_name in ("annotationlog_add", "annotationlog_edit"):
-            with self.assertRaises(Exception):
+            with self.assertRaises(NoReverseMatch):
                 reverse(f"plugins:netbox_grafana_annotations_plugin:{url_name}")
