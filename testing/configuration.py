@@ -41,9 +41,13 @@ REDIS = {
     },
 }
 
-# Security settings (test-only values)
+# Security settings (test-only values, not real secrets)
 SECRET_KEY = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-API_TOKEN_PEPPERS = ['test-pepper-for-api-tokens']
+# NetBox requires a dict keyed by int pepper id, each value >= 50 chars
+# (see utilities.security.validate_peppers).
+API_TOKEN_PEPPERS = {
+    1: 'test-only-fake-pepper-not-a-real-secret-do-not-use-in-production',
+}
 
 # For testing, allow all hosts
 ALLOWED_HOSTS = ['*']
