@@ -20,8 +20,6 @@ This plugin closes that gap automatically:
 
 ## Screenshots
 
-> The four images below are placeholders — drop your own screenshots into `docs/images/` using these exact filenames and they'll render here. Each one takes about a minute; see the capture notes under each placeholder.
-
 **The annotation, on the graph, in Grafana:**
 
 ![Grafana panel with annotation marker and tooltip open](docs/images/annotation-tooltip.png)
@@ -176,22 +174,22 @@ This is the full path from "plugin installed" to "seeing a real annotation." It 
 
 1. **Install and configure the plugin** — see Installing/Configuration above. Run `python manage.py migrate` afterward so the `AnnotationLog` table gets created.
 
-2. **Create a Grafana API token.** In Grafana: **Administration → Service accounts → Add service account** (Editor role is enough) → **Add service account token**. Put the token in `grafana_token`.
+2. **Create a Grafana API token.** In Grafana: **Administration → Users and access → Service accounts → Add service account** (Editor role is enough) → **Add service account token**. Put the token in `grafana_token`.
 
 3. **Pick a shared secret** for `webhook_secret` — any random string (e.g. `openssl rand -hex 32`). You'll enter this same value into NetBox in step 5.
 
 4. **Decide how objects map to dashboards** — pick one, both can coexist:
 
-   - **Tag your Grafana dashboards** with `netbox:{object_type}:{object_name}` (e.g. `netbox:dcim.device:dmi01-scranton-sw01`) — the default/primary path, no NetBox-side data entry needed. To add a tag to an existing dashboard: open it → **Edit** (pencil icon, top right) → **Settings** (gear icon) → **JSON Model** → add the tag string to the top-level `"tags"` array → **Save dashboard**. (Some Grafana versions also expose a plain "Tags" field under Settings → General — use whichever your version shows; the JSON Model always works regardless of version.)
+   - **Tag your Grafana dashboards** with `netbox:{object_type}:{object_name}` (e.g. `netbox:dcim.device:dmi01-scranton-sw01`) — the default/primary path, no NetBox-side data entry needed. To add a tag to an existing dashboard: open it → **Edit** (pencil icon, top right) → open the dashboard's JSON editor (in Grafana 13.x this is the **`{}`** icon in the right-hand icon rail, labeled **"Edit as code"**; older Grafana versions expose the same thing as **Settings → JSON Model**) → add the tag string to the top-level `"tags"` array → **Apply changes** → **Save** (the dashboard's own Save button, not just the JSON editor's). (Some Grafana versions also expose a plain "Tags" field under Settings → General — use whichever your version shows; the JSON/code editor always works regardless of version.)
    - **Or add a NetBox custom field** for a specific-object override: **Customization → Custom Fields → Add** → **Object types**: select the type(s) you want (e.g. `DCIM > Device`) → **Name**: `grafana_dashboard_uid` → **Type**: Text → **Create**. Then, on any object of that type, fill in the field (found under a "Custom Fields" section on its edit page) with the target dashboard's UID. This always wins over the tag search when set — use it for objects that need a pinned panel, or whose dashboard can't be tagged. (Optional: add a second custom field named `grafana_panel_id`, type Integer, to also pin a specific panel.)
 
 5. **Create a Webhook in NetBox** (Operations → Webhooks → Add):
    - **Name**: anything descriptive (e.g. `grafana-annotations`)
-   - **Payload URL**: `http(s)://<your-netbox-host>/plugins/netbox_grafana_annotations_plugin/webhook/`
+   - **URL** (labeled "Payload URL" in some NetBox versions): `http(s)://<your-netbox-host>/plugins/netbox_grafana_annotations_plugin/webhook/`
    - **HTTP method**: POST, **HTTP content type**: `application/json`
    - **Secret**: the same string as `webhook_secret` from step 3
 
-   > If NetBox's webhook-delivery worker runs in a different container/host than the web process (true for the default netbox-docker layout, where `netbox-worker` is separate from `netbox`), `localhost` in the Payload URL will **not** reach the web process. Use the actual reachable hostname — the Docker Compose service name (`http://netbox:8080/...`) if both are on the same Compose network, or the container's real address otherwise.
+   > If NetBox's webhook-delivery worker runs in a different container/host than the web process (true for the default netbox-docker layout, where `netbox-worker` is separate from `netbox`), `localhost` in this URL will **not** reach the web process. Use the actual reachable hostname — the Docker Compose service name (`http://netbox:8080/...`) if both are on the same Compose network, or the container's real address otherwise.
 
 6. **Create an Event Rule in NetBox** (Operations → Event Rules → Add):
    - **Object types**: a multi-select field — type to search, click a match to add it, repeat. Add all the object types you want covered in one rule (e.g. `DCIM > Device`, `DCIM > Interface`, `Circuits > Circuit` — see "Which NetBox object types should I cover?" above).

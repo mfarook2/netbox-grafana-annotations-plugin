@@ -10,7 +10,7 @@ This is the same walkthrough as the README's "Setup workflow", expanded with mor
 
 ## Step 1 — Grafana API token
 
-**Administration → Service accounts → Add service account** (Editor role) → **Add service account token**. Copy the token value immediately — Grafana only shows it once. Put it in `grafana_token`.
+**Administration → Users and access → Service accounts → Add service account** (Editor role) → **Add service account token**. Copy the token value immediately — Grafana only shows it once. Put it in `grafana_token`.
 
 Editor role is sufficient: the plugin needs to search dashboards (`GET /api/search`, works with Viewer) and create annotations (`POST /api/annotations`, needs Editor).
 
@@ -30,7 +30,7 @@ Pick one, or use both (custom field always wins when set):
 
 ### Option A: tag your Grafana dashboards (recommended default)
 
-Open the dashboard in Grafana → **Edit** (pencil icon) → **Settings** (gear icon) → **JSON Model** → add the tag string to the top-level `"tags"` array, e.g.:
+Open the dashboard in Grafana → **Edit** (pencil icon) → open the dashboard's JSON editor (in Grafana 13.x this is the **`{}`** icon in the right-hand icon rail, labeled **"Edit as code"**; older Grafana versions expose the same thing as **Settings → JSON Model**) → add the tag string to the top-level `"tags"` array, e.g.:
 
 ```json
 {
@@ -39,7 +39,7 @@ Open the dashboard in Grafana → **Edit** (pencil icon) → **Settings** (gear 
 }
 ```
 
-→ **Save dashboard**. (Some Grafana versions expose a plain "Tags" field under Settings → General instead — use whichever your version shows; JSON Model always works.)
+→ **Apply changes** → **Save** (the dashboard's own Save button, not just the JSON editor's). (Some Grafana versions expose a plain "Tags" field under Settings → General instead — use whichever your version shows; the JSON/code editor always works.)
 
 The tag format is `netbox:{object_type}:{object_name}` by default (configurable via `tag_template`) — `{object_type}` is NetBox's dotted model name (`dcim.device`, `circuits.circuit`), `{object_name}` is the object's display name.
 
@@ -63,13 +63,13 @@ Optionally repeat for a second field `grafana_panel_id` (Type: Integer) to also 
 | Field | Value |
 |---|---|
 | Name | anything descriptive, e.g. `grafana-annotations` |
-| Payload URL | `http(s)://<your-netbox-host>/plugins/netbox_grafana_annotations_plugin/webhook/` |
+| URL (labeled "Payload URL" in some NetBox versions) | `http(s)://<your-netbox-host>/plugins/netbox_grafana_annotations_plugin/webhook/` |
 | HTTP method | POST |
 | HTTP content type | `application/json` |
 | Secret | the same string as `webhook_secret` from step 2 |
 
 !!! warning "Networking gotcha"
-    NetBox's webhook worker (the process that actually sends this HTTP request) may run in a different container or host than the web process the Payload URL points at. This is true of the default `netbox-docker` layout, where `netbox-worker` is a separate container from `netbox`. If so, `localhost` in the Payload URL will **not** reach the web process — you'll see connection-refused errors in the worker's logs. Use a hostname the worker container can actually resolve: the Compose service name (`http://netbox:8080/...`) if both are on the same Compose network, or the real reachable address otherwise.
+    NetBox's webhook worker (the process that actually sends this HTTP request) may run in a different container or host than the web process this URL points at. This is true of the default `netbox-docker` layout, where `netbox-worker` is a separate container from `netbox`. If so, `localhost` in this URL will **not** reach the web process — you'll see connection-refused errors in the worker's logs. Use a hostname the worker container can actually resolve: the Compose service name (`http://netbox:8080/...`) if both are on the same Compose network, or the real reachable address otherwise.
 
 ## Step 5 — Create the NetBox Event Rule
 
