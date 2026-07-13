@@ -55,6 +55,14 @@ ALLOWED_HOSTS = ['*']
 # Enable debug mode for testing
 DEBUG = True
 
+# NetBox auto-installs the Django Debug Toolbar when DEBUG=True, but the
+# toolbar's own system check (debug_toolbar.E001) refuses to run under the
+# test runner unless told it's expected. See:
+# https://django-debug-toolbar.readthedocs.io/en/latest/configuration.html#is-running-tests
+DEBUG_TOOLBAR_CONFIG = {
+    'IS_RUNNING_TESTS': False,
+}
+
 # Plugin configuration
 PLUGINS = [
     'netbox_grafana_annotations_plugin',
