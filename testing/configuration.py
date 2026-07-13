@@ -140,8 +140,10 @@ EMAIL_PORT = 25
 EMAIL_TIMEOUT = 10
 EMAIL_FROM_EMAIL = 'netbox@localhost'
 
-# Exempt all views from login requirement for testing
-EXEMPT_VIEW_PERMISSIONS = ['*']
+# Deliberately left empty: the test suite (test_views.py) asserts that views
+# return 403 without the relevant permission, which a wildcard exemption here
+# would defeat.
+EXEMPT_VIEW_PERMISSIONS = []
 
 # Banner (optional)
 BANNER_TOP = ''

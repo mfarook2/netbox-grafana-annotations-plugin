@@ -43,6 +43,7 @@ test = [
     "ruff==0.14.14",
     "pre-commit==6.0.0",
     "pytest==9.0.2",
+    "tblib==3.2.0",
 ]
 
 [project.urls]

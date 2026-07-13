@@ -92,6 +92,10 @@ jobs:
         working-directory: plugin
         run: |
           pip install -e . --no-deps
+          # tblib lets Django's --parallel test runner pickle tracebacks
+          # across worker processes, so failures show real stack traces
+          # instead of "TypeError: cannot pickle 'traceback' object".
+          pip install tblib==3.2.0
 
       - name: Configure NetBox
         working-directory: netbox/netbox
