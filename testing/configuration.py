@@ -52,16 +52,13 @@ API_TOKEN_PEPPERS = {
 # For testing, allow all hosts
 ALLOWED_HOSTS = ['*']
 
-# Enable debug mode for testing
-DEBUG = True
-
-# NetBox auto-installs the Django Debug Toolbar when DEBUG=True, but the
-# toolbar's own system check (debug_toolbar.E001) refuses to run under the
-# test runner unless told it's expected. See:
-# https://django-debug-toolbar.readthedocs.io/en/latest/configuration.html#is-running-tests
-DEBUG_TOOLBAR_CONFIG = {
-    'IS_RUNNING_TESTS': False,
-}
+# Keep DEBUG off for the test settings module. NetBox's settings.py keeps
+# django-debug-toolbar in INSTALLED_APPS whenever DEBUG=True (only stripping
+# it when DEBUG=False), and it also hardcodes DEBUG_TOOLBAR_CONFIG itself
+# after reading this file, so overriding that setting here has no effect --
+# the toolbar's own system check then fails under the test runner
+# (debug_toolbar.E001). DEBUG=False sidesteps the toolbar entirely.
+DEBUG = False
 
 # Plugin configuration
 PLUGINS = [
