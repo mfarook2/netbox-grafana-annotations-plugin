@@ -7,6 +7,10 @@ When someone edits a device, changes its role, or flips a status in NetBox, this
 * Free software: Apache-2.0
 * Documentation: https://mfarook2.github.io/netbox-grafana-annotations-plugin/
 
+## Demo
+
+![Demo: editing a device in NetBox produces an annotation on the matching Grafana graph](docs/images/demo.gif)
+
 ## Why this exists
 
 NetBox is source of truth for what's *supposed* to be true about your network. Grafana is where people actually watch it behave. Today those two are disconnected: an engineer re-roles a device or flips a status at 2:14pm, and there is no marker anywhere showing that. Debugging "why did errors spike around 2pm" means manually opening NetBox's changelog and eyeballing timestamps against a graph.
