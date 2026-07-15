@@ -1,0 +1,1372 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://mfarook2.github.io/netbox-grafana-annotations-plugin/">
+      
+      
+      
+        <link rel="next" href="setup-guide/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>NetBox Grafana Annotations Plugin</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#NetBox-Grafana-Annotations-Plugin" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="NetBox Grafana Annotations Plugin" class="md-header__button md-logo" aria-label="NetBox Grafana Annotations Plugin" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NetBox Grafana Annotations Plugin
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mfarook2/netbox-grafana-annotations-plugin" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mfarook2/netbox-grafana-annotations-plugin
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="NetBox Grafana Annotations Plugin" class="md-nav__button md-logo" aria-label="NetBox Grafana Annotations Plugin" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    NetBox Grafana Annotations Plugin
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mfarook2/netbox-grafana-annotations-plugin" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mfarook2/netbox-grafana-annotations-plugin
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#NetBox-Grafana-Annotations-Plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NetBox Grafana Annotations Plugin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NetBox Grafana Annotations Plugin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#Demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Demo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Why-this-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why this exists
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Screenshots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Screenshots
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#How-it-works-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it works (architecture)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compatibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Installing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Which-NetBox-object-types-should-I-cover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Which NetBox object types should I cover?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Setup-workflow-step-by-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup workflow (step by step)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Viewing-what-happened" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Viewing what happened
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Development--running-the-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Development / running the tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contributing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contributing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#Reporting-Bugs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reporting Bugs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Feature-Requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feature Requests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Support
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Credits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Credits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="setup-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#NetBox-Grafana-Annotations-Plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NetBox Grafana Annotations Plugin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NetBox Grafana Annotations Plugin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#Demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Demo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Why-this-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why this exists
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Screenshots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Screenshots
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#How-it-works-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it works (architecture)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compatibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Installing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Which-NetBox-object-types-should-I-cover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Which NetBox object types should I cover?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Setup-workflow-step-by-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup workflow (step by step)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Viewing-what-happened" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Viewing what happened
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Development--running-the-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Development / running the tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contributing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contributing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#Reporting-Bugs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reporting Bugs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Feature-Requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feature Requests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Support
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Credits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Credits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Home</h1>
+
+<h2 id="NetBox-Grafana-Annotations-Plugin">NetBox Grafana Annotations Plugin<a class="headerlink" href="#NetBox-Grafana-Annotations-Plugin" title="Permanent link">&para;</a></h2>
+<p><strong>See the moment a NetBox change happened, right on the Grafana graph it affected.</strong></p>
+<p>When someone edits a device, changes its role, or flips a status in NetBox, this plugin drops a marker onto the matching Grafana dashboard at that exact timestamp — so "did something change in NetBox around when this started?" is answered by glancing at the graph, not by cross-referencing two tools by hand.</p>
+<ul>
+<li>Free software: Apache-2.0</li>
+<li>Documentation: https://mfarook2.github.io/netbox-grafana-annotations-plugin/</li>
+</ul>
+<h3 id="Demo">Demo<a class="headerlink" href="#Demo" title="Permanent link">&para;</a></h3>
+<p><img alt="Demo: editing a device in NetBox produces an annotation on the matching Grafana graph" src="images/demo.gif" /></p>
+<h3 id="Why-this-exists">Why this exists<a class="headerlink" href="#Why-this-exists" title="Permanent link">&para;</a></h3>
+<p>NetBox is source of truth for what's <em>supposed</em> to be true about your network. Grafana is where people actually watch it behave. Today those two are disconnected: an engineer re-roles a device or flips a status at 2:14pm, and there is no marker anywhere showing that. Debugging "why did errors spike around 2pm" means manually opening NetBox's changelog and eyeballing timestamps against a graph.</p>
+<p>This plugin closes that gap automatically:</p>
+<ol>
+<li>You edit an object in NetBox (a device role change, a status flip, whatever your Event Rule is scoped to).</li>
+<li>NetBox's own Event Rule / Webhook system — no custom signal handling — fires a POST at this plugin.</li>
+<li>The plugin resolves which Grafana dashboard/panel that object maps to, and posts an annotation via Grafana's own Annotations API.</li>
+<li>The marker is already sitting on the graph, before anyone thinks to look for it — whether they're investigating an incident that started hours ago, or just watching the graph for a few minutes right after making the change to confirm nothing broke.</li>
+</ol>
+<h3 id="Screenshots">Screenshots<a class="headerlink" href="#Screenshots" title="Permanent link">&para;</a></h3>
+<p><strong>The annotation, on the graph, in Grafana:</strong></p>
+<p><img alt="Grafana panel with annotation marker and tooltip open" src="images/annotation-tooltip.png" /></p>
+<p><em>Capture from your Grafana dashboard: hover the dashed vertical marker so the tooltip (timestamp, text, tags) is visible, then screenshot the panel.</em></p>
+<p><strong>The plugin's own Annotation Logs list, inside NetBox:</strong></p>
+<p><img alt="NetBox Annotation Logs list view" src="images/annotation-logs-list.png" /></p>
+<p><em>Capture from <code>http://&lt;your-netbox&gt;/plugins/netbox_grafana_annotations_plugin/annotation-logs/</code> after at least one event has fired.</em></p>
+<p><strong>Configuring the NetBox Webhook that points at this plugin:</strong></p>
+<p><img alt="NetBox Webhook edit page showing Payload URL and Secret fields" src="images/netbox-webhook-config.png" /></p>
+<p><em>Capture from a Webhook's edit page in NetBox (Operations → Webhooks) with the Payload URL and Secret fields visible.</em></p>
+<p><strong>Configuring the Event Rule that triggers it:</strong></p>
+<p><img alt="NetBox Event Rule edit page" src="images/netbox-event-rule-config.png" /></p>
+<p><em>Capture from an Event Rule's edit page in NetBox (Operations → Event Rules), showing the object type, trigger, and the Webhook selected as its action.</em></p>
+<h3 id="How-it-works-architecture">How it works (architecture)<a class="headerlink" href="#How-it-works-architecture" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>NetBox object changes
+      │
+      ▼
+NetBox Event Rule (built-in) ──POST──▶ this plugin&#39;s webhook endpoint
+                                          /plugins/netbox_grafana_annotations_plugin/webhook/
+                                              │
+                                              ▼
+                                   Verify X-Hook-Signature (HMAC-SHA512,
+                                   NetBox&#39;s own webhook-signing convention)
+                                              │
+                                              ▼
+                                   Parse payload: object type, event type,
+                                   changed fields, timestamp
+                                              │
+                                              ▼
+                                   Resolve target Grafana dashboard/panel:
+                                     1. grafana_dashboard_uid custom field
+                                        on the object, if set (override)
+                                     2. else, live Grafana tag search:
+                                        GET /api/search?tag=netbox:{type}:{name}
+                                              │
+                                              ▼
+                                   POST /api/annotations (Grafana)
+                                              │
+                                              ▼
+                                   Log the attempt to this plugin&#39;s own
+                                   Annotation Logs (success/failure, visible
+                                   in the NetBox UI)
+</code></pre></div>
+<p>The plugin intentionally rides on NetBox's native Event Rule / Webhook system rather than hooking Django signals — it's the documented, upgrade-safe extension point, and it's what NetBox admins already know how to configure.</p>
+<p><strong>Known limitation, stated plainly:</strong> the trigger is a NetBox database change, not a confirmed device deployment. NetBox doesn't push config to devices itself, so a marker means "this was recorded in NetBox at this time," not "the device's behavior changed at this time." For teams that deploy close-in-time to NetBox edits, that gap is usually minutes, not weeks — but don't market this as "shows exactly when the device changed."</p>
+<h3 id="Compatibility">Compatibility<a class="headerlink" href="#Compatibility" title="Permanent link">&para;</a></h3>
+<p>This plugin requires <strong>NetBox 4.6</strong> or later. Confirmed by manual testing against NetBox v4.6.4.</p>
+<table>
+<thead>
+<tr>
+<th>NetBox Version</th>
+<th>Plugin Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4.6.x</td>
+<td>0.1.0</td>
+</tr>
+</tbody>
+</table>
+<p>See <a href="../COMPATIBILITY.md">COMPATIBILITY.md</a> for the full matrix and upgrade notes.</p>
+<h3 id="Dependencies">Dependencies<a class="headerlink" href="#Dependencies" title="Permanent link">&para;</a></h3>
+<ul>
+<li>NetBox 4.6 or later</li>
+<li>Python 3.12 or later</li>
+<li><a href="https://pypi.org/project/requests/"><code>requests</code></a> (installed automatically as a plugin dependency)</li>
+<li>A Grafana instance reachable from your NetBox server, with an API token (Bearer auth) that can create annotations and search dashboards</li>
+</ul>
+<p>No other services are required — no message queue, no external database, nothing beyond NetBox + Grafana.</p>
+<h3 id="Installing">Installing<a class="headerlink" href="#Installing" title="Permanent link">&para;</a></h3>
+<p>While this is still in development and not yet on PyPI, install with pip:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/mfarook2/netbox-grafana-annotations-plugin
+</code></pre></div>
+<p>or by adding to your <code>local_requirements.txt</code> / <code>plugin_requirements.txt</code> (netbox-docker):</p>
+<div class="highlight"><pre><span></span><code>git+https://github.com/mfarook2/netbox-grafana-annotations-plugin
+</code></pre></div>
+<p>For netbox-docker specifically, see <a href="https://github.com/netbox-community/netbox-docker/wiki/Using-Netbox-Plugins">the general instructions for using netbox-docker with plugins</a>.</p>
+<h3 id="Configuration">Configuration<a class="headerlink" href="#Configuration" title="Permanent link">&para;</a></h3>
+<p>Enable the plugin and configure it in NetBox's <code>configuration.py</code> (or netbox-docker's <code>configuration/plugins.py</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="n">PLUGINS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;netbox_grafana_annotations_plugin&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">PLUGINS_CONFIG</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;netbox_grafana_annotations_plugin&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;grafana_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://grafana.example.com&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;grafana_token&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;Grafana API token, Bearer auth&gt;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;webhook_secret&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;a random string — must match the Secret on your NetBox Webhook&gt;&quot;</span><span class="p">,</span>
+
+        <span class="c1"># Optional, shown with their defaults:</span>
+        <span class="s2">&quot;tag_template&quot;</span><span class="p">:</span> <span class="s2">&quot;netbox:</span><span class="si">{object_type}</span><span class="s2">:</span><span class="si">{object_name}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dashboard_uid_field&quot;</span><span class="p">:</span> <span class="s2">&quot;grafana_dashboard_uid&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;panel_id_field&quot;</span><span class="p">:</span> <span class="s2">&quot;grafana_panel_id&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;default_tags&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;netbox&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s2">&quot;cache_ttl&quot;</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Required</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>grafana_url</code></td>
+<td>Yes</td>
+<td>—</td>
+<td>Base URL of your Grafana instance, no trailing slash.</td>
+</tr>
+<tr>
+<td><code>grafana_token</code></td>
+<td>Yes</td>
+<td>—</td>
+<td>A Grafana API token (service-account token recommended) sent as <code>Authorization: Bearer &lt;token&gt;</code>. Needs permission to search dashboards and create annotations.</td>
+</tr>
+<tr>
+<td><code>webhook_secret</code></td>
+<td>Strongly recommended</td>
+<td><code>""</code></td>
+<td>Shared secret used to verify the <code>X-Hook-Signature</code> header NetBox sends. Must exactly match the Secret field on the NetBox Webhook object. <strong>If left blank, the endpoint accepts unsigned requests from anyone who can reach it — fine for a local dev instance, not for anything else.</strong></td>
+</tr>
+<tr>
+<td><code>tag_template</code></td>
+<td>No</td>
+<td><code>"netbox:{object_type}:{object_name}"</code></td>
+<td>Format string used to search Grafana for a matching dashboard when no custom-field override is set. <code>{object_type}</code> is e.g. <code>dcim.device</code>; <code>{object_name}</code> is the object's display name.</td>
+</tr>
+<tr>
+<td><code>dashboard_uid_field</code></td>
+<td>No</td>
+<td><code>"grafana_dashboard_uid"</code></td>
+<td>Name of the NetBox custom field (if you create one) that overrides the tag-search mapping for a specific object.</td>
+</tr>
+<tr>
+<td><code>panel_id_field</code></td>
+<td>No</td>
+<td><code>"grafana_panel_id"</code></td>
+<td>Companion custom field for pinning a specific panel ID alongside the dashboard override.</td>
+</tr>
+<tr>
+<td><code>default_tags</code></td>
+<td>No</td>
+<td><code>["netbox"]</code></td>
+<td>Tags always included on every annotation, in addition to <code>device-{event}</code> and the object's name.</td>
+</tr>
+<tr>
+<td><code>timeout</code></td>
+<td>No</td>
+<td><code>5</code></td>
+<td>Seconds to wait on each Grafana HTTP call before giving up.</td>
+</tr>
+<tr>
+<td><code>cache_ttl</code></td>
+<td>No</td>
+<td><code>60</code></td>
+<td>Seconds to cache a tag-search result (including "nothing found") so a burst of edits to the same object doesn't re-search Grafana every time.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Which-NetBox-object-types-should-I-cover">Which NetBox object types should I cover?<a class="headerlink" href="#Which-NetBox-object-types-should-I-cover" title="Permanent link">&para;</a></h3>
+<p>Not every object type is worth annotating — the useful signal comes from objects that map to something you'd actually put a Grafana panel next to. Recommended core set, all supported today:</p>
+<ul>
+<li><strong>Device</strong> — role/status/platform changes, one dashboard per device.</li>
+<li><strong>Interface</strong> — enabled/disabled, description, mode, speed changes. Often the most valuable one, since a lot of real dashboards are per-interface.</li>
+<li><strong>Circuit</strong> — status/provider changes, for WAN/circuit-utilization dashboards.</li>
+</ul>
+<p>Leave out catalog/administrative objects (Device Type, Manufacturer, Device Role <em>definitions</em>, Tenant, Site metadata) — editing those doesn't correlate with anything happening on a graph, it's just noise.</p>
+<p><strong>Device and Circuit are "top-level" objects</strong> — each has its own name and its own dashboard, so the mapping logic (below) works against the object's own identity directly.</p>
+<p><strong>Interface is a "child" object</strong> — an interface doesn't have its own dashboard (there's no such thing as a "per-interface Grafana dashboard"); the dashboard that matters is its <em>parent device's</em>. The plugin knows this and automatically resolves an Interface event to its parent device for mapping purposes, while still recording the interface as the object that actually changed in Annotation Logs, and mentioning it by name in the annotation text/tags (e.g. <code>"netbox: GigabitEthernet0 — description changed to '...' (was '...')"</code>, tagged with both the device's and the interface's names). This is implemented via <code>parsing.PARENT_OBJECT_MAP</code>, a small config dict — extend it if you add other child object types (e.g. Cable) to your Event Rule.</p>
+<h3 id="Setup-workflow-step-by-step">Setup workflow (step by step)<a class="headerlink" href="#Setup-workflow-step-by-step" title="Permanent link">&para;</a></h3>
+<p>This is the full path from "plugin installed" to "seeing a real annotation." It assumes you already have NetBox and Grafana running somewhere reachable from each other.</p>
+<ol>
+<li>
+<p><strong>Install and configure the plugin</strong> — see Installing/Configuration above. Run <code>python manage.py migrate</code> afterward so the <code>AnnotationLog</code> table gets created.</p>
+</li>
+<li>
+<p><strong>Create a Grafana API token.</strong> In Grafana: <strong>Administration → Users and access → Service accounts → Add service account</strong> (Editor role is enough) → <strong>Add service account token</strong>. Put the token in <code>grafana_token</code>.</p>
+</li>
+<li>
+<p><strong>Pick a shared secret</strong> for <code>webhook_secret</code> — any random string (e.g. <code>openssl rand -hex 32</code>). You'll enter this same value into NetBox in step 5.</p>
+</li>
+<li>
+<p><strong>Decide how objects map to dashboards</strong> — pick one, both can coexist:</p>
+</li>
+<li>
+<p><strong>Tag your Grafana dashboards</strong> with <code>netbox:{object_type}:{object_name}</code> (e.g. <code>netbox:dcim.device:dmi01-scranton-sw01</code>) — the default/primary path, no NetBox-side data entry needed. To add a tag to an existing dashboard: open it → <strong>Edit</strong> (pencil icon, top right) → open the dashboard's JSON editor (in Grafana 13.x this is the <strong><code>{}</code></strong> icon in the right-hand icon rail, labeled <strong>"Edit as code"</strong>; older Grafana versions expose the same thing as <strong>Settings → JSON Model</strong>) → add the tag string to the top-level <code>"tags"</code> array → <strong>Apply changes</strong> → <strong>Save</strong> (the dashboard's own Save button, not just the JSON editor's). (Some Grafana versions also expose a plain "Tags" field under Settings → General — use whichever your version shows; the JSON/code editor always works regardless of version.)</p>
+</li>
+<li>
+<p><strong>Or add a NetBox custom field</strong> for a specific-object override: <strong>Customization → Custom Fields → Add</strong> → <strong>Object types</strong>: select the type(s) you want (e.g. <code>DCIM &gt; Device</code>) → <strong>Name</strong>: <code>grafana_dashboard_uid</code> → <strong>Type</strong>: Text → <strong>Create</strong>. Then, on any object of that type, fill in the field (found under a "Custom Fields" section on its edit page) with the target dashboard's UID. This always wins over the tag search when set — use it for objects that need a pinned panel, or whose dashboard can't be tagged. (Optional: add a second custom field named <code>grafana_panel_id</code>, type Integer, to also pin a specific panel.)</p>
+</li>
+<li>
+<p><strong>Create a Webhook in NetBox</strong> (Operations → Webhooks → Add):</p>
+</li>
+<li><strong>Name</strong>: anything descriptive (e.g. <code>grafana-annotations</code>)</li>
+<li><strong>URL</strong> (labeled "Payload URL" in some NetBox versions): <code>http(s)://&lt;your-netbox-host&gt;/plugins/netbox_grafana_annotations_plugin/webhook/</code></li>
+<li><strong>HTTP method</strong>: POST, <strong>HTTP content type</strong>: <code>application/json</code></li>
+<li><strong>Secret</strong>: the same string as <code>webhook_secret</code> from step 3</li>
+</ol>
+<blockquote>
+<p>If NetBox's webhook-delivery worker runs in a different container/host than the web process (true for the default netbox-docker layout, where <code>netbox-worker</code> is separate from <code>netbox</code>), <code>localhost</code> in this URL will <strong>not</strong> reach the web process. Use the actual reachable hostname — the Docker Compose service name (<code>http://netbox:8080/...</code>) if both are on the same Compose network, or the container's real address otherwise.</p>
+</blockquote>
+<ol>
+<li><strong>Create an Event Rule in NetBox</strong> (Operations → Event Rules → Add):</li>
+<li><strong>Object types</strong>: a multi-select field — type to search, click a match to add it, repeat. Add all the object types you want covered in one rule (e.g. <code>DCIM &gt; Device</code>, <code>DCIM &gt; Interface</code>, <code>Circuits &gt; Circuit</code> — see "Which NetBox object types should I cover?" above).</li>
+<li><strong>Event types</strong> (i.e. which operations trigger it) — another multi-select: <strong>Object created</strong>, <strong>Object updated</strong>, <strong>Object deleted</strong>. Check whichever apply; "Object updated" alone is a reasonable starting point.</li>
+<li><strong>Enabled</strong>: checked.</li>
+<li>Scroll down to <strong>Action type</strong>: <code>Webhook</code>, then <strong>Webhook</strong>: select the one you created in step 5.</li>
+<li>
+<p><strong>Save</strong>.</p>
+</li>
+<li>
+<p><strong>Make a real change</strong> to an object matching that Event Rule (e.g. edit a device's role, or an interface's description). Within a few seconds:</p>
+</li>
+<li>Check <code>/plugins/netbox_grafana_annotations_plugin/annotation-logs/</code> in NetBox — you should see a new entry with <code>success = Yes</code>.</li>
+<li>Check the matching Grafana dashboard — the annotation marker should be there.</li>
+</ol>
+<p>If either doesn't show up, see Troubleshooting below.</p>
+<p><strong>All of the above has been verified end-to-end against a real NetBox v4.6.4 + Grafana 13.0.2 instance</strong> — both mapping paths (tag search and custom-field override), both object shapes (top-level Device and child-object Interface via parent resolution), and Circuit as a second top-level type.</p>
+<h3 id="Troubleshooting">Troubleshooting<a class="headerlink" href="#Troubleshooting" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NetBox shows the webhook delivery failed with a connection error</td>
+<td>The Payload URL isn't reachable from wherever NetBox's webhook worker actually runs — see the networking note in step 5 above.</td>
+</tr>
+<tr>
+<td>Annotation Logs entry has <code>success = No</code>, error mentions signature/403</td>
+<td><code>webhook_secret</code> in <code>PLUGINS_CONFIG</code> doesn't match the Secret on the NetBox Webhook object — they must be identical strings.</td>
+</tr>
+<tr>
+<td>Annotation Logs entry has <code>success = No</code>, error is <code>no Grafana dashboard mapping found</code></td>
+<td>Neither the custom field nor a matching Grafana tag was found for that object — see step 4.</td>
+</tr>
+<tr>
+<td>Annotation Logs entry has <code>success = No</code>, error mentions connection refused / timeout</td>
+<td><code>grafana_url</code> isn't reachable from NetBox's server process, or <code>grafana_token</code> is invalid/expired.</td>
+</tr>
+<tr>
+<td>Nothing shows up in Annotation Logs at all</td>
+<td>The webhook never reached the plugin — double check the Event Rule is enabled and actually scoped to the object type/event you're testing, and that the Webhook's Payload URL is exactly right (including the trailing slash).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Viewing-what-happened">Viewing what happened<a class="headerlink" href="#Viewing-what-happened" title="Permanent link">&para;</a></h3>
+<p>Every webhook the plugin receives — successful or not — is recorded under <strong>Annotation Logs</strong> in NetBox's plugin navigation, with the resolved dashboard/panel, the exact annotation text sent, Grafana's HTTP response status, and an error detail field for failures. Nothing fails silently.</p>
+<h3 id="Development--running-the-tests">Development / running the tests<a class="headerlink" href="#Development--running-the-tests" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mfarook2/netbox-grafana-annotations-plugin
+<span class="nb">cd</span><span class="w"> </span>netbox-grafana-annotations-plugin
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>test<span class="o">]</span>
+</code></pre></div>
+<p>Tests run against a real NetBox instance (they exercise real Django models, migrations, and views — no live Grafana instance required, Grafana calls are mocked):</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>manage.py<span class="w"> </span><span class="nb">test</span><span class="w"> </span>netbox_grafana_annotations_plugin.tests
+</code></pre></div>
+<p>See <a href="../TESTING.md">TESTING.md</a> for the full local test setup and <a href="../.github/workflows/ci.yaml">.github/workflows/ci.yaml</a> for how CI runs it against a fresh NetBox checkout.</p>
+<h3 id="Contributing">Contributing<a class="headerlink" href="#Contributing" title="Permanent link">&para;</a></h3>
+<p>Contributions are welcome! Please see <a href="../CONTRIBUTING.md">CONTRIBUTING.md</a> for guidelines.</p>
+<h4 id="Reporting-Bugs">Reporting Bugs<a class="headerlink" href="#Reporting-Bugs" title="Permanent link">&para;</a></h4>
+<p>Please report bugs by opening an issue on our <a href="https://github.com/mfarook2/netbox-grafana-annotations-plugin/issues">GitHub Issues</a> page. When reporting bugs, please include:</p>
+<ul>
+<li>NetBox version</li>
+<li>Plugin version</li>
+<li>Python version</li>
+<li>Steps to reproduce</li>
+<li>Expected behavior</li>
+<li>Actual behavior</li>
+</ul>
+<h4 id="Feature-Requests">Feature Requests<a class="headerlink" href="#Feature-Requests" title="Permanent link">&para;</a></h4>
+<p>Feature requests can be submitted as <a href="https://github.com/mfarook2/netbox-grafana-annotations-plugin/issues">GitHub Issues</a> with the "enhancement" label.</p>
+<h3 id="Support">Support<a class="headerlink" href="#Support" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Documentation</strong>: https://mfarook2.github.io/netbox-grafana-annotations-plugin/</li>
+<li><strong>Issues</strong>: https://github.com/mfarook2/netbox-grafana-annotations-plugin/issues</li>
+<li><strong>Discussions</strong>: https://github.com/mfarook2/netbox-grafana-annotations-plugin/discussions</li>
+<li><strong>NetBox Community Slack</strong>: <a href="https://netdev.chat/">netdev-community.slack.com</a></li>
+</ul>
+<h3 id="Credits">Credits<a class="headerlink" href="#Credits" title="Permanent link">&para;</a></h3>
+<p>Based on the NetBox plugin tutorial:</p>
+<ul>
+<li><a href="https://github.com/netbox-community/netbox-plugin-demo">demo repository</a></li>
+<li><a href="https://github.com/netbox-community/netbox-plugin-tutorial">tutorial</a></li>
+</ul>
+<p>This package was created with <a href="https://github.com/audreyr/cookiecutter">Cookiecutter</a> and the <a href="https://github.com/netbox-community/cookiecutter-netbox-plugin"><code>netbox-community/cookiecutter-netbox-plugin</code></a> project template.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/mfarook2/netbox-grafana-annotations-plugin" target="_blank" rel="noopener" title="Github" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:farookconsult@gmail.com" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.indexes", "navigation.instant", "navigation.tabs.sticky"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
